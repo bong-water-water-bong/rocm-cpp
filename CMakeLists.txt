@@ -78,6 +78,8 @@ add_library(rocm_cpp SHARED
     src/bonsai_q1_gemv.hip
     src/bonsai_tq2_gemv.hip
     src/bonsai_gemv_scalar_ref.hip
+    src/medusa_tree_attn.hip
+    src/medusa_small_m_gemv.hip
     kernels/ternary_gemv_phase5_dot4.hip
     kernels/ternary_gemv_phase5_halo.hip
     kernels/ternary_gemv_sherry.hip
@@ -100,6 +102,8 @@ set_source_files_properties(
     src/bonsai_q1_gemv.hip
     src/bonsai_tq2_gemv.hip
     src/bonsai_gemv_scalar_ref.hip
+    src/medusa_tree_attn.hip
+    src/medusa_small_m_gemv.hip
     kernels/ternary_gemv_phase5_dot4.hip
     kernels/ternary_gemv_phase5_halo.hip
     kernels/ternary_gemv_sherry.hip
@@ -188,6 +192,15 @@ target_compile_options(test_bonsai_e2e PRIVATE
     $<$<COMPILE_LANGUAGE:HIP>:-O3 -Wno-unused-result>)
 target_link_libraries(test_bonsai_e2e PRIVATE rocm_cpp hip::host hip::device)
 set_target_properties(test_bonsai_e2e PROPERTIES HIP_ARCHITECTURES "${CMAKE_HIP_ARCHITECTURES}")
+
+# -- tests/test_medusa_skeleton : ABI/link smoke for Medusa kernel stubs ------
+# Scope-pass test (2026-04-24): both launchers return RCPP_NOT_IMPLEMENTED.
+# Replaced by a proper differential test once the kernel bodies are authored.
+# No GPU device required; this test exercises only the host-side launcher
+# early-return path. Plain C++17 TU — no HIP language tagging needed.
+add_executable(test_medusa_skeleton tests/test_medusa_skeleton.cpp)
+target_compile_options(test_medusa_skeleton PRIVATE -Wall -Wextra -Wno-unused-result)
+target_link_libraries(test_medusa_skeleton PRIVATE rocm_cpp)
 
 # -- tools/bitnet_decode : end-to-end MVP decode CLI ---------------------------
 add_executable(bitnet_decode tools/bitnet_decode.cpp)
