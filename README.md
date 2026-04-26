@@ -567,6 +567,17 @@ See [docs/02-therock-build.md](docs/02-therock-build.md) for details.
 
 ## License
 
+Most of the source is MIT (see [LICENSE](./LICENSE)). Sherry-specific
+source (3:4 N:M sparse ternary GEMV, 1.25 bpw packer, L1-ratio rescale,
+phantom-sign balance) is PolyForm Noncommercial 1.0.0 (see
+[LICENSE-SHERRY.md](./LICENSE-SHERRY.md) and
+[SHERRY-FILES.txt](./SHERRY-FILES.txt)). Commercial use of Sherry
+requires a paid license — contact
+bong-water-water-bong@users.noreply.github.com.
+
+The relicense is forward-only (effective 2026-04-26). Pre-cut history
+remains MIT for that snapshot.
+
 If it can be done in C++, we do it in C++.
 
 Fork it. Improve it. Push it back.

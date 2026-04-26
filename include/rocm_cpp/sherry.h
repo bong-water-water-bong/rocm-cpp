@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: LicenseRef-PolyForm-Noncommercial-1.0.0
+// Sherry — see LICENSE-SHERRY.md and SHERRY-FILES.txt at the repo root.
+// Commercial use requires a separate license.
+//
 // rocm-cpp — Sherry 1.25-bit ternary GEMV C API (clean-room fp16 path).
 //
 // This is a standalone entry point distinct from the halo-1bit v3 format used
@@ -71,6 +75,31 @@ void sherry_ternary_gemv_launch(
 void sherry_ternary_gemv_scalar_ref_launch(
     const uint8_t*  packed_weights,
     const uint16_t* act_fp16,
+    uint16_t*       out_fp16,
+    int             N_out,
+    int             K_in,
+    void*           stream);
+
+// Same packing + activation contract as `sherry_ternary_gemv_launch`, but
+// folds in the halo-1bit v3 per-row fp32 scale before the fp16 clamp +
+// cast. Required when the caller has the `[N_out] f32` scales tensor
+// emitted by `tools/h1b-sherry/` (Rust requantizer) or
+// `tools/h1b_repack_sherry.cpp` (C++ requantizer); without this fold-in
+// the output magnitudes are off by the absmean factor and downstream
+// RMSNorm / softmax silently produce garbage.
+//
+//   row_scales_fp32 : const float*, device, length N_out (one per output
+//                     row). Pass `nullptr` to opt out — the kernel then
+//                     reduces to the pure signed-sum behavior of
+//                     `sherry_ternary_gemv_launch`.
+//
+// All other parameters and constraints match `sherry_ternary_gemv_launch`
+// exactly. Single kernel under the hood; the scale fold-in is one fmul
+// on lane 0 of the writeback, no extra LDS / register pressure.
+void sherry_ternary_gemv_with_scales_launch(
+    const uint8_t*  packed_weights,
+    const uint16_t* act_fp16,
+    const float*    row_scales_fp32,
     uint16_t*       out_fp16,
     int             N_out,
     int             K_in,
