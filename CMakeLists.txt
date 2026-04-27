@@ -127,7 +127,7 @@ set_source_files_properties(
     kernels/hadamard_rotate_butterfly.hip
     PROPERTIES LANGUAGE HIP)
 target_include_directories(rocm_cpp PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>)
 target_include_directories(rocm_cpp SYSTEM PRIVATE "${ROCM_ROOT}/include")
 target_compile_options(rocm_cpp PRIVATE
