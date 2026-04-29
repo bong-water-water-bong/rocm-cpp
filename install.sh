@@ -24,8 +24,8 @@ H1B_OUT="${H1B_OUT:-$PREFIX/halo-1bit/models/halo-1bit-2b-absmean.h1b}"
 JOBS="${JOBS:-$(nproc)}"
 GFX="${GFX:-gfx1151}"
 
-ROCM_CPP_REPO="${ROCM_CPP_REPO:-https://github.com/stampby/rocm-cpp.git}"
-HALO_1BIT_REPO="${HALO_1BIT_REPO:-https://github.com/stampby/halo-1bit.git}"
+ROCM_CPP_REPO="${ROCM_CPP_REPO:-https://github.com/bong-water-water-bong/rocm-cpp.git}"
+HALO_1BIT_REPO="${HALO_1BIT_REPO:-https://github.com/bong-water-water-bong/halo-1bit.git}"
 
 blue()  { printf '\033[1;34m%s\033[0m\n' "$*"; }
 green() { printf '\033[1;32m%s\033[0m\n' "$*"; }

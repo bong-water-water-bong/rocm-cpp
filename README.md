@@ -27,7 +27,7 @@ tokens: 279 4320 374 220 18 13 20 13 220 18 13 20 374 279 4320 13 ...
 ## Quick start — install everything
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/stampby/rocm-cpp/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/bong-water-water-bong/rocm-cpp/main/install.sh | bash
 ```
 
 Or see [`install.sh`](install.sh) — clones rocm-cpp + halo-1bit, builds
@@ -560,9 +560,7 @@ See [docs/02-therock-build.md](docs/02-therock-build.md) for details.
 
 ## Related Repos
 
-- [bleeding-edge](https://github.com/stampby/bleeding-edge) — Wiki with full build log and known issues
-- [lemon-mlx-engine](https://github.com/stampby/lemon-mlx-engine) — C++ MLX engine hitting 153 t/s
-- [halo-1bit](https://github.com/stampby/halo-1bit) — 1-bit inference engine (The 1 Bit Blaster)
+- [lemon-mlx-engine](https://github.com/bong-water-water-bong/lemon-mlx-engine) — C++ MLX engine hitting 153 t/s
 - [PrismML llama.cpp](https://github.com/PrismML-Eng/llama.cpp) — Prism branch with Q1_0 DP4A kernels
 
 ## License

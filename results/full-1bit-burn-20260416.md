@@ -79,4 +79,4 @@ export ROCBLAS_TENSILE_LIBPATH=$HOME/therock/build/math-libs/BLAS/rocBLAS/dist/l
 ./build-rocm/bin/llama-bench -m Bonsai-8B.gguf -ngl 99 -p 512 -n 128 -r 3
 ```
 
-GCC 15 patches: https://github.com/stampby/rocm-cpp/docs/02-therock-build.md
+GCC 15 patches: https://github.com/bong-water-water-bong/rocm-cpp/docs/02-therock-build.md
